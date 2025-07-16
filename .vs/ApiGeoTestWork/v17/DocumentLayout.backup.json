@@ -1,0 +1,122 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\ProjectC#\\ApiGeoTestWork\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{880F9FE9-7356-431F-8863-17C1DB7613BD}|ApiGeoTestWork.csproj|c:\\projectc#\\apigeotestwork\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{880F9FE9-7356-431F-8863-17C1DB7613BD}|ApiGeoTestWork.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{880F9FE9-7356-431F-8863-17C1DB7613BD}|ApiGeoTestWork.csproj|c:\\projectc#\\apigeotestwork\\models\\locationclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{880F9FE9-7356-431F-8863-17C1DB7613BD}|ApiGeoTestWork.csproj|solutionrelative:models\\locationclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{880F9FE9-7356-431F-8863-17C1DB7613BD}|ApiGeoTestWork.csproj|c:\\projectc#\\apigeotestwork\\models\\geoinformationclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{880F9FE9-7356-431F-8863-17C1DB7613BD}|ApiGeoTestWork.csproj|solutionrelative:models\\geoinformationclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{880F9FE9-7356-431F-8863-17C1DB7613BD}|ApiGeoTestWork.csproj|c:\\projectc#\\apigeotestwork\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{880F9FE9-7356-431F-8863-17C1DB7613BD}|ApiGeoTestWork.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{880F9FE9-7356-431F-8863-17C1DB7613BD}|ApiGeoTestWork.csproj|c:\\projectc#\\apigeotestwork\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{880F9FE9-7356-431F-8863-17C1DB7613BD}|ApiGeoTestWork.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{880F9FE9-7356-431F-8863-17C1DB7613BD}|ApiGeoTestWork.csproj|c:\\projectc#\\apigeotestwork\\services\\pointaffiliationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{880F9FE9-7356-431F-8863-17C1DB7613BD}|ApiGeoTestWork.csproj|solutionrelative:services\\pointaffiliationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GeoInformationClass.cs",
+              "DocumentMoniker": "C:\\ProjectC#\\ApiGeoTestWork\\Models\\GeoInformationClass.cs",
+              "RelativeDocumentMoniker": "Models\\GeoInformationClass.cs",
+              "ToolTip": "C:\\ProjectC#\\ApiGeoTestWork\\Models\\GeoInformationClass.cs",
+              "RelativeToolTip": "Models\\GeoInformationClass.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwCoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-16T17:20:41.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LocationClass.cs",
+              "DocumentMoniker": "C:\\ProjectC#\\ApiGeoTestWork\\Models\\LocationClass.cs",
+              "RelativeDocumentMoniker": "Models\\LocationClass.cs",
+              "ToolTip": "C:\\ProjectC#\\ApiGeoTestWork\\Models\\LocationClass.cs",
+              "RelativeToolTip": "Models\\LocationClass.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-16T17:21:11.171Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\ProjectC#\\ApiGeoTestWork\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\ProjectC#\\ApiGeoTestWork\\Views\\Home\\Index.cshtml*",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml*",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAAAMkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-16T16:24:57.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\ProjectC#\\ApiGeoTestWork\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\ProjectC#\\ApiGeoTestWork\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-13T15:51:39.448Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\ProjectC#\\ApiGeoTestWork\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\ProjectC#\\ApiGeoTestWork\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBsAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-16T16:31:11.279Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PointAffiliationService.cs",
+              "DocumentMoniker": "C:\\ProjectC#\\ApiGeoTestWork\\Services\\PointAffiliationService.cs",
+              "RelativeDocumentMoniker": "Services\\PointAffiliationService.cs",
+              "ToolTip": "C:\\ProjectC#\\ApiGeoTestWork\\Services\\PointAffiliationService.cs",
+              "RelativeToolTip": "Services\\PointAffiliationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAACSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-16T15:06:12.389Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

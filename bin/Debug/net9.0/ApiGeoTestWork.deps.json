@@ -1,0 +1,141 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "ApiGeoTestWork/1.0.0": {
+        "dependencies": {
+          "Aspose.GIS": "25.6.0",
+          "GeoCoordinate.NetCore": "1.0.0.1",
+          "Microsoft.AspNetCore.OpenApi": "9.0.6",
+          "NetTopologySuite": "2.6.0"
+        },
+        "runtime": {
+          "ApiGeoTestWork.dll": {}
+        }
+      },
+      "Aspose.Drawing.Common/25.3.0": {
+        "runtime": {
+          "lib/netstandard2.0/Aspose.Drawing.Common.dll": {
+            "assemblyVersion": "25.3.0.0",
+            "fileVersion": "25.3.0.0"
+          }
+        }
+      },
+      "Aspose.GIS/25.6.0": {
+        "dependencies": {
+          "Aspose.Drawing.Common": "25.3.0",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/Aspose.GIS.dll": {
+            "assemblyVersion": "25.6.0.0",
+            "fileVersion": "25.6.0.0"
+          }
+        }
+      },
+      "GeoCoordinate.NetCore/1.0.0.1": {
+        "runtime": {
+          "lib/netstandard1.6/GeoCoordinate.NetCore.dll": {
+            "assemblyVersion": "1.0.0.1",
+            "fileVersion": "1.0.0.1"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.OpenApi/9.0.6": {
+        "dependencies": {
+          "Microsoft.OpenApi": "1.6.17"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll": {
+            "assemblyVersion": "9.0.6.0",
+            "fileVersion": "9.0.625.26701"
+          }
+        }
+      },
+      "Microsoft.OpenApi/1.6.17": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
+            "assemblyVersion": "1.6.17.0",
+            "fileVersion": "1.6.17.0"
+          }
+        }
+      },
+      "NetTopologySuite/2.6.0": {
+        "runtime": {
+          "lib/netstandard2.1/NetTopologySuite.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ApiGeoTestWork/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Aspose.Drawing.Common/25.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OeO3ceH3YlC4GKzjsCgdsZAvaU1Fyowi+XOzolhyIVIsoZ+Y2mScYCXq0ZwA0ZZ0QJcrpHkfoccWIXy8LFTgNw==",
+      "path": "aspose.drawing.common/25.3.0",
+      "hashPath": "aspose.drawing.common.25.3.0.nupkg.sha512"
+    },
+    "Aspose.GIS/25.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ec4UJKqTxzffbdM+gPV+vhYuu7e6YWvXITlqdFIUeVVsPuly3lWvdsR0S5Kft5+SuMqCbzgmMYrbNfybuF9wzQ==",
+      "path": "aspose.gis/25.6.0",
+      "hashPath": "aspose.gis.25.6.0.nupkg.sha512"
+    },
+    "GeoCoordinate.NetCore/1.0.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VrR5MLkh0u2qka79JcQ/GUrgHwGidayCA7nKy2430qYX/JHdrHLgwp1MuBTSsygWs0s2V6GQ0Hp8HUMatHiWFw==",
+      "path": "geocoordinate.netcore/1.0.0.1",
+      "hashPath": "geocoordinate.netcore.1.0.0.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.OpenApi/9.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MOJ4DG1xd3NlWMYh+JdGNT9uvBtEk1XQU/FQlpNZFlAzM8t0oB5IimvnGlnK7jmyY4vQagLPB1xw1HjJ8CHrZg==",
+      "path": "microsoft.aspnetcore.openapi/9.0.6",
+      "hashPath": "microsoft.aspnetcore.openapi.9.0.6.nupkg.sha512"
+    },
+    "Microsoft.OpenApi/1.6.17": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Le+kehlmrlQfuDFUt1zZ2dVwrhFQtKREdKBo+rexOwaCoYP0/qpgT9tLxCsZjsgR5Itk1UKPcbgO+FyaNid/bA==",
+      "path": "microsoft.openapi/1.6.17",
+      "hashPath": "microsoft.openapi.1.6.17.nupkg.sha512"
+    },
+    "NetTopologySuite/2.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1B1OTacTd4QtFyBeuIOcThwSSLUdRZU3bSFIwM8vk36XiZlBMi3K36u74e4OqwwHRHUuJC1PhbDx4hyI266X1Q==",
+      "path": "nettopologysuite/2.6.0",
+      "hashPath": "nettopologysuite.2.6.0.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    }
+  }
+}

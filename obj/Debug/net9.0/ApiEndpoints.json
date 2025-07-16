@@ -1,0 +1,116 @@
+[
+  {
+    "ContainingType": "ApiGeoTestWork.Controllers.GeoController",
+    "Method": "GetAllData",
+    "RelativePath": "api/kml/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiGeoTestWork.Controllers.GeoController",
+    "Method": "GetBelonging",
+    "RelativePath": "api/kml/belonging/{givenLat}\u0026{givenLng}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "givenLat",
+        "Type": "System.Double",
+        "IsRequired": true
+      },
+      {
+        "Name": "givenLng",
+        "Type": "System.Double",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiGeoTestWork.Controllers.GeoController",
+    "Method": "GetCentroidsData",
+    "RelativePath": "api/kml/centroids",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiGeoTestWork.Controllers.GeoController",
+    "Method": "GetDisctance",
+    "RelativePath": "api/kml/distance/{id}\u0026{givenLat}\u0026{givenLng}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "givenLat",
+        "Type": "System.Double",
+        "IsRequired": true
+      },
+      {
+        "Name": "givenLng",
+        "Type": "System.Double",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiGeoTestWork.Controllers.GeoController",
+    "Method": "GetFieldsData",
+    "RelativePath": "api/kml/fields",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiGeoTestWork.Controllers.GeoController",
+    "Method": "GetSquare",
+    "RelativePath": "api/kml/square/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiGeoTestWork.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiGeoTestWork.WeatherForecast, ApiGeoTestWork, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]

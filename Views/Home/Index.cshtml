@@ -1,0 +1,398 @@
+﻿@{
+    ViewData["Title"] = "Агроаналитика";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        .tab button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        .map {
+            height: 400px;
+            margin-top: 15px;
+            border: 1px solid #ddd;
+        }
+        input, button {
+            padding: 8px;
+            margin: 5px 0;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #e6f7e6;
+            border: 1px solid #4CAF50;
+        }
+        .error {
+            background-color: #ffebee;
+            border: 1px solid #f44336;
+        }
+    </style>
+</head>
+<body>
+    <h1>Агроаналитика</h1>
+
+    <!-- Вкладки -->
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'AllData')">Все данные</button>
+        <button class="tablinks" onclick="openTab(event, 'Square')">Площадь</button>
+        <button class="tablinks" onclick="openTab(event, 'Distance')">Расстояние</button>
+        <button class="tablinks" onclick="openTab(event, 'Belonging')">Принадлежность</button>
+    </div>
+
+    <!-- Содержимое вкладок -->
+    <div id="AllData" class="tabcontent" style="display: block;">
+        <h2>Все поля</h2>
+        <button onclick="loadAllData()">Загрузить данные</button>
+        <div id="allDataResult" class="result"></div>
+    </div>
+
+    <div id="Square" class="tabcontent">
+        <h2>Площадь поля</h2>
+        <input type="number" id="fieldId" placeholder="ID поля" min="1">
+        <button onclick="getSquare()">Получить площадь</button>
+        <div id="squareResult" class="result"></div>
+    </div>
+
+    <div id="Distance" class="tabcontent">
+        <h2>Расстояние до центра поля</h2>
+        <input type="number" id="distanceFieldId" placeholder="ID поля" min="1">
+        <input type="text" id="pointLat" placeholder="Широта">
+        <input type="text" id="pointLng" placeholder="Долгота">
+        <button onclick="calculateDistance()">Вычислить</button>
+        <div id="distanceResult" class="result"></div>
+    </div>
+
+    <div id="Belonging" class="tabcontent">
+        <h2>Принадлежность точки полю</h2>
+        <input type="text" id="belongingLat" placeholder="Широта">
+        <input type="text" id="belongingLng" placeholder="Долгота">
+        <button onclick="checkBelonging()">Проверить</button>
+        <div id="belongingResult" class="result"></div>
+    </div>
+
+    <!-- Скрипты -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+
+        // Переключение вкладок
+        function openTab(evt, tabName) {
+            const tabcontent = document.getElementsByClassName("tabcontent");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            const tablinks = document.getElementsByClassName("tablinks");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+            // Ленивая инициализация карт
+            if (tabName === 'AllData' && !mapsInitialized.allData) initMap('allDataMap');
+            if (tabName === 'Distance' && !mapsInitialized.distance) initMap('distanceMap');
+            if (tabName === 'Belonging' && !mapsInitialized.belonging) initMap('belongingMap');
+        }
+
+        // API-запросы
+        async function loadAllData() {
+            try {
+                // Показываем индикатор загрузки
+                const resultDiv = document.getElementById('allDataResult');
+                resultDiv.innerHTML = '<div class="loader">Загрузка данных полей...</div>';
+
+                const response = await fetch('/api/all');
+                if (!response.ok) throw new Error(`Ошибка сервера: ${response.status}`);
+
+                const fields = await response.json();
+
+                // Очищаем и создаем таблицу
+                resultDiv.innerHTML = '';
+                const table = document.createElement('table');
+                table.className = 'fields-table';
+                table.innerHTML = `
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Площадь (га)</th>
+                        <th>Центральная точка</th>
+                        <th>Точек в полигоне</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                `;
+
+                const tbody = table.querySelector('tbody');
+
+                // Заполняем таблицу данными
+                fields.forEach(field => {
+                    const row = document.createElement('tr');
+                    row.className = 'field-row';
+                    row.innerHTML = `
+                        <td>${field.id}</td>
+                        <td>${field.name || '—'}</td>
+                        <td>${field.size || '—'}</td>
+                        <td>${field.location?.center?.lat?.toFixed(6)}, ${field.location?.center?.lng?.toFixed(6)}</td>
+                         <td>${field.location?.polygon?.length || 0}</td>
+                    `;
+
+                // Добавляем обработчик для показа деталей
+                row.addEventListener('click', () => {
+                    showFieldDetails(field);
+                });
+
+                tbody.appendChild(row);
+            });
+
+            resultDiv.appendChild(table);
+
+        } catch (error) {
+            const resultDiv = document.getElementById('allDataResult');
+            resultDiv.innerHTML = `
+                <div class="error-message">
+                    <p>Ошибка при загрузке данных: <strong>${error.message}</strong></p>
+                    <button onclick="loadAllData()" class="retry-button">Повторить попытку</button>
+                </div>
+            `;
+            console.error("Ошибка:", error);
+        }
+        }
+                // Функция для отображения детальной информации о поле
+        function showFieldDetails(field) {
+            const modal = document.createElement('div');
+            modal.className = 'field-modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h3>Подробная информация</h3>
+
+                    <div class="field-info">
+                        <div class="info-row">
+                            <span class="info-label">ID:</span>
+                            <span class="info-value">${field.id}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Название:</span>
+                            <span class="info-value">${field.name || 'Не указано'}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Площадь:</span>
+                            <span class="info-value">${field.size || 'Не указано'} га</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Центр:</span>
+                            <span class="info-value">${field.location?.center?.lat?.toFixed(6)}, ${field.location?.center?.lng?.toFixed(6)}</span>
+                        </div>
+                    </div>
+
+                    <h4>Координаты полигона:</h4>
+                    <div class="coordinates-container">
+                        ${
+                            field.location?.polygon?.length
+                                ? field.location.polygon.map(coord =>
+                                    `<div class="coordinate">${coord.lat.toFixed(6)}, ${coord.lng.toFixed(6)}</div>`
+                                  ).join('')
+                                : '<p class="no-coords">Нет данных о полигоне</p>'
+                        }
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+
+            // Закрытие модального окна
+            modal.querySelector('.close-modal').addEventListener('click', () => {
+                modal.remove();
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+
+        async function getSquare() {
+            const fieldId = document.getElementById('fieldId').value;
+            if (!fieldId || fieldId < 1) {
+                alert('Пожалуйста, введите корректный ID поля (число больше 0)');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/square/${fieldId}`);
+
+                if (!response.ok) {
+                    throw new Error(`Ошибка HTTP: ${response.status}`);
+                }
+
+                const area = await response.text();
+                const resultDiv = document.getElementById('squareResult');
+
+                resultDiv.innerHTML = `
+                    <h4>Результат:</h4>
+                    <p>Площадь поля ID ${fieldId}: <strong>${area} га</strong></p>
+                `;
+                resultDiv.className = 'result success';
+
+            } catch (error) {
+                const resultDiv = document.getElementById('squareResult');
+                resultDiv.innerHTML = `
+                    <h4>Ошибка:</h4>
+                    <p>${error.message}</p>
+                    <p>Проверьте правильность ID поля</p>
+                `;
+                resultDiv.className = 'result error';
+                console.error('Ошибка при запросе площади:', error);
+            }
+        }
+
+        async function calculateDistance() {
+            const fieldId = document.getElementById('distanceFieldId').value;
+            const lat = document.getElementById('pointLat').value;
+            const lng = document.getElementById('pointLng').value;
+
+            // Валидация ввода
+            if (!fieldId || fieldId < 1) {
+                alert('Введите корректный ID поля');
+                return;
+            }
+            if (!lat || !lng || isNaN(lat) || isNaN(lng)) {
+                alert('Введите корректные координаты');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/distance/${fieldId}&${lat}&${lng}`);
+
+                if (!response.ok) {
+                    throw new Error(`Ошибка HTTP: ${response.status}`);
+                }
+
+                const distance = await response.text();
+                const resultDiv = document.getElementById('distanceResult');
+
+                resultDiv.innerHTML = `
+                    <h4>Результат:</h4>
+                    <p>Расстояние от центра поля ID ${fieldId} до точки (${lat}, ${lng}):</p>
+                    <p><strong>${distance} метров</strong></p>
+                `;
+                resultDiv.className = 'result success';
+
+                
+
+            } catch (error) {
+                const resultDiv = document.getElementById('distanceResult');
+                resultDiv.innerHTML = `
+                    <h4>Ошибка:</h4>
+                    <p>${error.message}</p>
+                `;
+                resultDiv.className = 'result error';
+                console.error('Ошибка при расчете расстояния:', error);
+            }
+        }
+
+        async function checkBelonging() {
+            const lat = document.getElementById('belongingLat').value;
+            const lng = document.getElementById('belongingLng').value;
+
+            // Валидация координат
+            if (!lat || !lng || isNaN(lat) || isNaN(lng)) {
+                alert('Введите корректные координаты в формате: 41.123456, 45.123456');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/belonging/${lat}&${lng}`);
+
+                if (!response.ok) {
+                    throw new Error(`Ошибка HTTP: ${response.status}`);
+                }
+
+                const result = await response.json();
+                const resultDiv = document.getElementById('belongingResult');
+
+                if (result.IsInside || (result.id && result.name)) {
+                    resultDiv.innerHTML = `
+                        <h4>Результат:</h4>
+                        <p>Точка находится внутри поля!</p>
+                        <p><strong>ID:</strong> ${result.id ?? result.Id}</p>
+                        <p><strong>Название:</strong> ${result.name ?? result.Name}</p>
+                    `;
+                    resultDiv.className = 'result success';
+                } else {
+                    resultDiv.innerHTML = `
+                        <h4>Результат:</h4>
+                        <p>Точка не принадлежит ни одному полю</p>
+                    `;
+                    resultDiv.className = 'result error';
+                }
+            } catch (error) {
+                const resultDiv = document.getElementById('belongingResult');
+                resultDiv.innerHTML = `
+                    <h4>Ошибка:</h4>
+                    <p>${error.message}</p>
+                `;
+                resultDiv.className = 'result error';
+                console.error('Ошибка при проверке принадлежности:', error);
+            }
+        }
+
+
+        // Вспомогательные функции
+        function handleResponse(elementId, text) {
+            const el = document.getElementById(elementId);
+            el.innerHTML = text;
+            el.className = 'result success';
+        }
+
+        function showError(elementId, error) {
+            const el = document.getElementById(elementId);
+            el.innerHTML = `Ошибка: ${error.message}`;
+            el.className = 'result error';
+        }
+    </script>
+</body>
+</html>
