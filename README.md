@@ -4,6 +4,8 @@
 
 Использованные внешние библиотеки (через NuGet): Aspose.GIS (для парсинга KML файлов), GeoCoordinatePortable и NetTopologySuite.Geometries (для работы с координатами)
 
+Для удобства сделал простой сайт для работы, так же можно вызывать через URL API.
+
 URL для работы с API:
 1. api/kml/fields - вывод информации из файла fields
 2. api/kml/centroids - вывод информации из файла centroids
